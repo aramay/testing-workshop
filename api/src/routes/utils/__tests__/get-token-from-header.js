@@ -15,12 +15,29 @@
 // tests to ensure that that use case is always supported.
 import getTokenFromHeader from '../get-token-from-header'
 
-test('this is the title of your test', () => {
+test('getTokenFromHeader returns null if there is no Token', () => {
   // this is where you put your test code. Write code that will
   // throw an error if getTokenFromHeader has a bug. The `expect`
   // global is a utility that makes writting such assertions easier,
   // but you can do it however you like.
+
+  const req = {headers: {}}
+  const result = getTokenFromHeader(req)
+  expect(result).toBeNull()
+
 })
+test('getTokenFromHeader returns Token if provided', () => {
+  const authorization = "Token blahblahblahblah.blahblahblah.blahblahblah"
+  const req = {headers: {authorization}}
+  const result = getTokenFromHeader(req)
+
+  expect(result).toBe("blahblahblahblah.blahblahblah.blahblahblah")
+
+})
+
+function getReq(authorization){
+  return {headers: authorization}
+}
 
 //////// Elaboration & Feedback /////////
 // When you've finished with the exercises:
