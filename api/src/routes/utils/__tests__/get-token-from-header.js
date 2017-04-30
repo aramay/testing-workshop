@@ -21,14 +21,14 @@ test('getTokenFromHeader returns null if there is no Token', () => {
   // global is a utility that makes writting such assertions easier,
   // but you can do it however you like.
 
-  const req = {headers: {}}
+  const req = getReq()
   const result = getTokenFromHeader(req)
   expect(result).toBeNull()
 
 })
 test('getTokenFromHeader returns Token if provided', () => {
   const authorization = "Token blahblahblahblah.blahblahblah.blahblahblah"
-  const req = {headers: {authorization}}
+  const req = getReq(authorization)
   const result = getTokenFromHeader(req)
 
   expect(result).toBe("blahblahblahblah.blahblahblah.blahblahblah")
@@ -36,7 +36,7 @@ test('getTokenFromHeader returns Token if provided', () => {
 })
 
 function getReq(authorization){
-  return {headers: authorization}
+  return {headers: {authorization}}
 }
 
 //////// Elaboration & Feedback /////////
