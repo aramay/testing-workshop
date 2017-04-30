@@ -10,6 +10,7 @@ export default getTokenFromHeader
 //   // other properties
 // }
 function getTokenFromHeader(req) {
+  
   if (
     req.headers.authorization &&
     req.headers.authorization.split(' ')[0] === 'Token'
